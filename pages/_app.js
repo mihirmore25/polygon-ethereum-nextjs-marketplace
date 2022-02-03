@@ -26,6 +26,11 @@ function Marketplace({ Component, pageProps }) {
             <a className="mr-6 text-pink-500">
               Creator Dashboard
             </a>
+          </Link> 
+          <Link href="/auctions">
+            <a className="mr-6 text-pink-500">
+               Auctions
+            </a>
           </Link>
         </div>
       </nav>

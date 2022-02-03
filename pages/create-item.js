@@ -13,7 +13,7 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
-export default function CreateItem() {
+export default function CreateItem() {  
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
@@ -59,21 +59,21 @@ export default function CreateItem() {
     /* next, create the item */
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer)
     let transaction = await contract.createToken(url)
-    let tx = await transaction.wait()
-    let event = tx.events[0]
-    let value = event.args[2]
-    let tokenId = value.toNumber()
+    // let tx = await transaction.wait()
+    // let event = tx.events[0]
+    // let value = event.args[2]
+    // let tokenId = value.toNumber()
 
-    const price = ethers.utils.parseUnits(formInput.price, 'ether')
+    // const price = ethers.utils.parseUnits(formInput.price, 'ether')
   
-    /* then list the item for sale on the marketplace */
-    contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
-    let listingPrice = await contract.getListingPrice()
-    listingPrice = listingPrice.toString()
+    // /* then list the item for sale on the marketplace */
+    // contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+    // let listingPrice = await contract.getListingPrice()
+    // listingPrice = listingPrice.toString()
 
-    transaction = await contract.createMarketItem(nftaddress, tokenId, price, { value: listingPrice })
-    await transaction.wait()
-    router.push('/')
+    // transaction = await contract.createMarketItem(nftaddress, tokenId, price, { value: listingPrice })
+    // await transaction.wait()
+    router.push('/my-assets')
   }
 
   return (
