@@ -85,17 +85,6 @@ export default function Home() {
                   <p className="text-center text-2xl mb-4 font-bold text-white">{nft.price} MATIC</p>
                    <button className="w-full bg-green-500 text-white font-bold py-2 px-12 rounded" onClick={
                       () => {
-                        Swal.fire({
-                          title: "NFT price",
-                          text: "Price In Matic",
-                          input: "text",
-                          inputValue: nft.price,
-                          showCancelBotton: false
-                        }).then((result) => {
-                          if (result.value) {
-                            console.log(result.value);
-                          }
-                        })
                         buyNft(nft)
                       }  
                     }>Buy</button>

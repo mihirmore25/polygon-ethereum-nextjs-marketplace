@@ -110,13 +110,18 @@ export default function Auctions() {
                             const signer = provider.getSigner()
                             let contract = new ethers.Contract(auction, Auction.abi, signer)  
 
-                            if (result.value > nft.highestBid) {
+                            let comparePrice = nft.highestBid >  nft.minBid  ?  nft.highestBid : nft.minBid;
+                            if (result.value > comparePrice) {
                               let tx = await contract.makeBid(nft._tokenAddress , nft._tokenId , { value: ethers.utils.parseUnits(result.value.toString() , 'ether') } ) 
                               await tx.wait()   
                               loadAuctions()
                               Swal.close()
+                            } else if (result.value < comparePrice) {
+                              Swal.fire({
+                                title: `Bid should be gretaer than ${nft.highestBid >  nft.minBid  ?  'Highest Bid': 'Minimum Bid'}`
+                              })
                             }
-                  
+
                             // let price =nft.highestBid >  nft.minBid  ?  nft.highestBid : nft.minBid  
                             // let aprice = ethers.utils.parseUnits('0.015' , 'ether')
                           }

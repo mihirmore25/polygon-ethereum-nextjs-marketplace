@@ -124,6 +124,10 @@ export default function MyAssets() {
                             let aprice = ethers.utils.parseUnits(result.value.toString(), 'ether')
                             console.log(aprice);
                       
+                            const tokenContract = new ethers.Contract(nftaddress, NFT.abi, signer)
+                            let tx = await tokenContract.setApprovalForAll(nftmarketaddress, true)
+                            await tx.wait()
+                            
                             //tokenid to be corrected 
                             let transaction = await contract.createMarketItem(nft.tokenContract.address.toString(), nft.tokenId, aprice, { value: listingPrice })
                             await transaction.wait()
