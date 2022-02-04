@@ -78,34 +78,41 @@ export default function CreateItem() {
 
   return (
     <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col pb-12">
+      <div className="w-1/2 flex flex-col mt-6 p-12 border rounded-md shadow-md">
         <input 
           placeholder="Asset Name"
-          className="mt-8 border rounded p-4"
+          className="block border rounded-md p-4 tracking-wide text-gray-700"
           onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
         />
         <textarea
           placeholder="Asset Description"
-          className="mt-2 border rounded p-4"
+          className="mt-4 border rounded-md p-4"
           onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
         />
         <input
           placeholder="Asset Price in Eth"
-          className="mt-2 border rounded p-4"
+          className="mt-4 border rounded-md p-4"
           onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
         />
-        <input
+        {/* <input
           type="file"
           name="Asset"
           className="my-4"
           onChange={onChange}
-        />
+        /> */}
+        <input className="mt-4 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
+                    rounded-md
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" name='Asset' onChange={onChange}>
+        </input>
         {
           fileUrl && (
             <img className="rounded mt-4" width="350" src={fileUrl} />
           )
         }
-        <button onClick={createMarket} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
+        <button onClick={createMarket} className='font-bold mt-4 bg-green-500 text-white rounded p-4 shadow-lg'>
           Create Digital Asset
         </button>
       </div>
